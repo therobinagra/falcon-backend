@@ -1,3 +1,4 @@
+const mongoose = require('mongoose')
 const Order = require('../models/Order')
 const Product = require('../models/Product')
 
@@ -78,6 +79,27 @@ const getOrders = async (req, res) => {
   }
 }
 
+const trackOrder = async (req, res) => {
+  try {
+    const { id, phone } = req.query
+    if (!id || !phone) {
+      return res.status(400).json({ message: 'Order ID and phone number are required' })
+    }
+    if (!mongoose.isValidObjectId(id)) {
+      return res.status(404).json({ message: 'Order not found. Please check the order ID.' })
+    }
+    const order = await Order.findById(id)
+    if (!order || order.customer?.phone !== phone.trim()) {
+      return res
+        .status(404)
+        .json({ message: 'Order not found. Please check the order ID and phone number.' })
+    }
+    res.status(200).json(order)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
 const getOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id).populate('user', 'name email')
@@ -125,6 +147,7 @@ module.exports = {
   createOrder,
   getMyOrders,
   getOrders,
+  trackOrder,
   getOrderById,
   updateOrderStatus,
   deleteOrder,

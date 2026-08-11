@@ -3,6 +3,7 @@ const {
   createOrder,
   getMyOrders,
   getOrders,
+  trackOrder,
   getOrderById,
   updateOrderStatus,
   deleteOrder,
@@ -12,6 +13,7 @@ const { protect, adminOnly } = require('../middleware/authMiddleware')
 const router = express.Router()
 
 router.post('/', createOrder)
+router.get('/track', trackOrder)
 router.get('/my', protect, getMyOrders)
 router.get('/', protect, adminOnly, getOrders)
 router.route('/:id').get(protect, getOrderById)
