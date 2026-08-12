@@ -7,16 +7,21 @@ require('dotenv').config()
 
 const app = express()
 
-connectDB().then(() => {
+connectDB().then(async () => {
   const Product = require('./models/Product')
   const seedProducts = require('./data/products')
-  seedProducts.forEach((p) => {
-    Product.findOneAndUpdate(
-      { $or: [{ slug: p.slug }, { name: p.name }] },
-      { $set: p },
-      { upsert: true, setDefaultsOnInsert: true }
-    ).catch((err) => console.error('Product sync failed:', err.message))
-  })
+  await Promise.all(
+    seedProducts.map((p) =>
+      Product.findOneAndUpdate(
+        { $or: [{ slug: p.slug }, { name: p.name }] },
+        { $set: p },
+        { upsert: true, setDefaultsOnInsert: true }
+      ).catch((err) => console.error('Product sync failed:', err.message))
+    )
+  )
+  await Product.deleteMany({
+    slug: { $nin: seedProducts.map((p) => p.slug) },
+  }).catch((err) => console.error('Product cleanup failed:', err.message))
 
   const Blog = require('./models/Blog')
   const seedBlogs = require('./data/blogs')
