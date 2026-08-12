@@ -193,13 +193,72 @@ Discover the traditional Ayurvedic approach to Shilajit and make herbal wellness
     image: '/images/product10.jpg',
   },
   {
-    title: 'The Falcon Combo Pack: Complete Wellness in One Order',
+    title: 'The Falcon Combo Pack: Complete Ayurvedic & Herbal Wellness in One Order',
     slug: 'falcon-combo-pack',
-    category: 'Extend Range',
+    category: 'Ayurveda & Herbal Wellness',
     date: 'Jul 12, 2026',
     readTime: '5 min read',
-    desc: 'Our best-selling wellness essentials bundled into one value-for-money kit — everything you need, all in one order.',
-    body: "The Falcon Combo Pack brings together our best-selling wellness essentials into a single, value-for-money kit. Instead of ordering each product separately, you get a complete wellness bundle at a better price — all in one order, delivered discreetly.\n\nWhy choose the combo: It simplifies your routine. The pack is designed so that the products work together to support stamina, energy and overall wellbeing. Whether you are starting your wellness journey or stocking up, the combo is the smart way to buy.\n\nWho is it for: Anyone who wants a complete daily wellness setup without the hassle of multiple orders. It also makes a thoughtful, practical gift.\n\nValue: Bundling the best-sellers together means you pay less than buying each item separately — all while building a complete wellness shelf at home.",
+    desc: 'Amrit Urja Capsule, Amrit Urja Oil aur Shakti Vardhak Churna — sab kuch ek convenient Ayurvedic & herbal wellness combo mein.',
+    body: `## Introduction
+
+Aaj ke busy lifestyle mein daily wellness routine ko simple aur convenient rakhna important hai. Isi idea ke saath Falcon Combo Pack mein multiple Ayurvedic and herbal wellness products ko ek saath include kiya gaya hai.
+
+Ye combo un adults ke liye convenient option hai jo apni daily routine mein Ayurvedic herbal wellness, body-care aur traditional wellness practices ko include karna chahte hain.
+
+## What's Included in the Falcon Combo?
+
+Falcon Combo Pack mein three wellness products ko ek saath include kiya gaya hai:
+
+Amrit Urja Capsule – Ek Ayurvedic herbal supplement jo daily wellness routine mein stamina, energy aur vitality-focused lifestyle ke saath include kiya ja sakta hai.
+
+Amrit Urja Oil – Ek Ayurvedic herbal oil intended for external use and massage. Gentle massage ko relaxation aur everyday body-care routine ka part banaya ja sakta hai.
+
+Shakti Vardhak Churna – Ek traditional Ayurvedic herbal churna jo daily wellness routine ke saath use kiya ja sakta hai, while following the instructions provided on the product packaging.
+
+## One Combo, Multiple Wellness Needs
+
+Alag-alag products ko separately order karne ke bajay, combo format ek convenient option provide karta hai. Isme herbal supplementation, traditional massage care aur Ayurvedic churna ko ek single wellness collection mein rakha gaya hai.
+
+Is combination ko healthy lifestyle ke saath thoughtfully use kiya ja sakta hai.
+
+## Ayurvedic & Herbal Lifestyle
+
+Ayurveda mein wellness ko ek complete lifestyle approach ke roop mein dekha jata hai. Herbal products ke saath daily habits bhi equally important hain.
+
+A healthy routine mein include karein:
+
+- Balanced aur nutritious diet
+- Proper sleep aur rest
+- Regular physical activity
+- Adequate hydration
+- Stress management
+- Consistent daily routine
+
+Falcon Combo Pack ko isi broader Ayurvedic and herbal wellness approach ka part banaya ja sakta hai.
+
+## Why Choose a Combo Pack?
+
+- Convenience: Multiple products ek hi order mein.
+- Complete Routine: Different forms of Ayurvedic and herbal wellness ko ek collection mein include karna.
+- Simple Wellness Approach: Daily routine ko organized aur convenient banana.
+
+## How to Use
+
+Har product ka usage alag ho sakta hai. Capsule, oil aur churna ke liye packaging par diye gaye dosage, usage instructions aur precautions ko carefully follow karein.
+
+Recommended quantity se zyada use na karein.
+
+## Important Precautions
+
+Falcon Combo Pack healthy lifestyle ka replacement nahi hai aur products ko kisi disease ke treatment ya cure ke roop mein represent nahi kiya jana chahiye.
+
+Pregnancy, breastfeeding, medical condition ya regular medication ki situation mein products use karne se pehle qualified healthcare professional se advice lena recommended hai.
+
+## Conclusion
+
+Falcon Combo Pack traditional Ayurvedic and herbal wellness ko ek convenient collection mein bring karta hai. Amrit Urja Capsule, Amrit Urja Oil aur Shakti Vardhak Churna ko ek balanced lifestyle ke saath thoughtfully include kiya ja sakta hai.
+
+Ayurvedic tradition, herbal wellness and everyday self-care — all together in one convenient combo.`,
     image: '/images/combo1.jpg',
   },
   {
