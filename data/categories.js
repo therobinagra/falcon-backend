@@ -14,6 +14,11 @@ const categories = [
     description: 'Complete combo packs and performance essentials.',
     image: '/images/product3.jpg',
   },
+  {
+    name: 'Churan',
+    description: 'Classic ayurvedic churan for digestion and daily wellness.',
+    image: '/images/churan1.jpg',
+  },
 ]
 
 module.exports = categories

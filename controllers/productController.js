@@ -50,6 +50,7 @@ const createProduct = async (req, res) => {
   try {
     const {
       name,
+      slug,
       tagline,
       description,
       category,
@@ -62,6 +63,7 @@ const createProduct = async (req, res) => {
       stock,
       featured,
       inStock,
+      related,
     } = req.body
 
     if (!name || !category || !price || !mrp) {
@@ -72,6 +74,7 @@ const createProduct = async (req, res) => {
 
     const product = await Product.create({
       name,
+      slug: slug || name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
       tagline: tagline || '',
       description: description || '',
       category,
@@ -85,6 +88,7 @@ const createProduct = async (req, res) => {
       stock: Number(stock) || 0,
       featured: featured === 'true' || featured === true,
       inStock: inStock === 'true' || inStock === true || inStock === undefined,
+      related: Array.isArray(related) ? related : [],
     })
 
     res.status(201).json(product)
@@ -102,6 +106,7 @@ const updateProduct = async (req, res) => {
 
     const fields = [
       'name',
+      'slug',
       'tagline',
       'description',
       'category',
@@ -114,6 +119,7 @@ const updateProduct = async (req, res) => {
       'stock',
       'featured',
       'inStock',
+      'related',
     ]
 
     fields.forEach((field) => {

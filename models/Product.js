@@ -7,6 +7,12 @@ const productSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    slug: {
+      type: String,
+      trim: true,
+      unique: true,
+      sparse: true,
+    },
     tagline: {
       type: String,
       default: '',
@@ -63,6 +69,10 @@ const productSchema = new mongoose.Schema(
     inStock: {
       type: Boolean,
       default: true,
+    },
+    related: {
+      type: [String],
+      default: [],
     },
   },
   { timestamps: true }

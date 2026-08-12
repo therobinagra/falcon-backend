@@ -7,7 +7,17 @@ require('dotenv').config()
 
 const app = express()
 
-connectDB()
+connectDB().then(() => {
+  const Product = require('./models/Product')
+  const seedProducts = require('./data/products')
+  seedProducts.forEach((p) => {
+    Product.findOneAndUpdate(
+      { $or: [{ slug: p.slug }, { name: p.name }] },
+      { $set: p },
+      { upsert: true, setDefaultsOnInsert: true }
+    ).catch((err) => console.error('Product sync failed:', err.message))
+  })
+})
 
 app.use(cors())
 app.use(express.json())
