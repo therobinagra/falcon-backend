@@ -53,13 +53,65 @@ Amrit Urja Capsule traditional Ayurvedic and herbal wellness ko modern daily lif
     image: '/images/product5.jpg',
   },
   {
-    title: 'Amrit Urja Oil: The Traditional Herbal Massage Ritual for Strength',
+    title: 'Amrit Urja Oil: The Traditional Herbal Massage Ritual for Strength & Relaxation',
     slug: 'amrit-urja-oil',
-    category: 'Bold Supplements',
+    category: 'Ayurveda & Herbal Wellness',
     date: 'Jul 28, 2026',
     readTime: '4 min read',
-    desc: 'A time-tested herbal oil for external massage that supports muscle strength, relaxation and everyday vitality.',
-    body: "Amrit Urja Oil is a traditional herbal blend meant for external use. It is formulated to support muscle strength and relaxation when massaged gently into the skin. It carries a rich herbal composition inspired by age-old wellness practices.\n\nHow to use: Take a small amount of oil, warm it slightly between your palms and massage gently over the desired area in slow, circular motions. Leave it on for 20–30 minutes, then rinse with warm water. Use 2–3 times a week for best results.\n\nBenefits: Regular massage with Amrit Urja Oil helps ease tension, supports muscle recovery and leaves the skin feeling nourished. It is a simple way to add a traditional wellness ritual to your weekly routine.\n\nNote: For external use only. Avoid contact with eyes. Keep away from children.",
+    desc: 'Amrit Urja Oil ek traditional Ayurvedic herbal massage oil hai jo external use ke liye formulated hai.',
+    body: `## Introduction
+
+Aaj ki busy lifestyle mein body ko relaxation aur proper care dena bahut important hai. Long working hours, physical activity aur daily routine ki wajah se muscles aur body mein tiredness feel ho sakti hai.
+
+Amrit Urja Oil ek traditional Ayurvedic herbal massage oil hai, jo external use ke liye formulated hai. Gentle massage ke through ise daily body-care aur relaxation routine ka part banaya ja sakta hai.
+
+## Ayurvedic Herbal Massage
+
+Ayurveda mein oil massage, jise traditionally Abhyanga kaha jata hai, self-care aur daily wellness practices ka ek important part raha hai.
+
+Traditional Ayurvedic massage routine mein herbal oils ka use body ko nourish karne, relaxation promote karne aur overall wellbeing ko support karne ke liye kiya jata hai.
+
+Amrit Urja Oil isi Ayurvedic and herbal wellness approach ko dhyan mein rakhte hue external massage ke liye use kiya ja sakta hai.
+
+## Gentle Massage for Everyday Wellness
+
+Regular massage routine body ko relax feel karne mein help kar sakti hai. Gentle movements ke saath oil massage ko morning ya bedtime routine mein include kiya ja sakta hai.
+
+Massage ke dauran:
+
+- Oil ko gently apply karein
+- Comfortable pressure ke saath massage karein
+- Body ko relax karne ke liye sufficient time dein
+- Massage ke baad product instructions ke according clean karein
+
+Massage ko healthy lifestyle, proper sleep, hydration aur regular physical activity ke saath combine karna overall wellness ke liye better approach hai.
+
+## Amrit Urja Oil – Product Information
+
+- Product Name: Amrit Urja Oil
+- Type: Ayurvedic Herbal Massage Oil
+- Quantity: 15 ml
+- Usage: External use only
+
+Product ke label par diye gaye usage instructions ko carefully follow karein. Recommended quantity se zyada use na karein.
+
+## Ayurvedic & Herbal Wellness Routine
+
+Ayurveda mein wellness ko ek complete lifestyle approach ke roop mein dekha jata hai. Herbal products ke saath healthy food, adequate rest, exercise aur regular daily routine bhi important hote hain.
+
+Amrit Urja Oil ko ek traditional herbal massage and self-care routine ke part ke roop mein use kiya ja sakta hai.
+
+## Important Precautions
+
+Ye product external use only ke liye hai. Eyes, mouth aur sensitive areas ke contact se bachayein. Irritation ya discomfort hone par use discontinue karein.
+
+Agar aapko koi medical condition hai, skin sensitivity hai, ya aap kisi treatment/medication par hain, to use karne se pehle qualified healthcare professional se advice lena better hai.
+
+## Conclusion
+
+Amrit Urja Oil traditional Ayurvedic herbal massage practices ko daily self-care routine ke saath include karne ka convenient option hai. Gentle external massage ke saath ise relaxation aur everyday body wellness routine ka part banaya ja sakta hai.
+
+Ayurvedic herbs, mindful massage aur healthy lifestyle habits — together, they can make everyday self-care more consistent and enjoyable.`,
     image: '/images/product11.jpg',
   },
   {
