@@ -208,57 +208,55 @@ Discover the traditional Ayurvedic approach to Shilajit and make herbal wellness
     category: 'Ayurveda & Herbal Wellness',
     date: 'Jul 5, 2026',
     readTime: '4 min read',
-    desc: 'Amrit Urja Churan ek classic ayurvedic churan hai jo traditional herbs ke saath digestion aur daily wellness ko support karta hai.',
+    desc: 'Amrit Urja Churan traditional Ayurvedic herbal preparation hai jo overall wellness, daily vitality aur balanced lifestyle ke saath include kiya ja sakta hai.',
     body: `## Introduction
 
-Ayurveda mein churan ek traditional herbal preparation hai, jise naturally occurring herbs ko blend karke banaya jata hai. Traditional wellness practices mein churan ko daily routine ka part banane ka practice raha hai.
+Ayurveda mein Churan ek traditional herbal preparation hai, jisme different herbs aur natural ingredients ko blend karke daily wellness routine ka part banaya jata hai.
 
-Amrit Urja Churan ek classic ayurvedic churan hai, jo time-tested natural herbs ke saath traditional wellness approach ko modern lifestyle ke saath combine karne ke liye banaya gaya hai.
+Amrit Urja Churan traditional Ayurvedic approach se inspired herbal preparation hai, jise overall wellness, daily vitality aur balanced lifestyle ke saath include kiya ja sakta hai.
 
-## What Is Ayurvedic Churan?
+## Ayurvedic Herbal Approach
 
-Churan Ayurveda mein herbs ko powder form mein blend kar ke banaya jata hai. Traditional formulations mein alag-alag natural herbs ko specific proportions mein combine kiya jata hai.
+Ayurveda traditionally herbs aur natural ingredients ko daily wellness practices mein important place deta hai. Churan format herbs ko routine mein include karne ka ek traditional aur convenient tareeka hai.
 
-Amrit Urja Churan traditional herbs ke balanced blend ke saath taiyar kiya gaya hai. Iska use healthy lifestyle routine ke part ke roop mein kiya ja sakta hai.
+Ayurvedic wellness ka focus sirf ek product par nahi, balki balanced diet, proper rest, regular activity aur healthy daily habits par bhi hota hai.
 
-## Ayurvedic & Herbal Wellness
+## Daily Wellness & Vitality
 
-Ayurveda mein wellness ko sirf kisi ek product tak limited nahi maana jata. Balanced diet, proper sleep, regular activity aur healthy daily routine bhi Ayurvedic wellness ke important parts hain.
+Busy lifestyle mein apni daily routine ko balanced rakhna important hai. Nutritious food, sufficient water, proper sleep aur physical activity ke saath herbal wellness products ko responsibly use kiya ja sakta hai.
 
-Amrit Urja Churan ko isi broader Ayurvedic and herbal wellness routine ke part ke roop mein include kiya ja sakta hai.
+Amrit Urja Churan ko adults apni Ayurvedic and herbal wellness routine ka part bana sakte hain.
 
-## Digestion & Daily Wellness
+## Healthy Routine ke Saath
 
-Traditional Ayurvedic practices mein digestion ko overall wellbeing ka important hissa maana gaya hai. Balanced digestion healthy lifestyle aur daily energy ko support kar sakti hai.
-
-Amrit Urja Churan adults ke liye daily herbal wellness routine mein include kiya ja sakta hai, while maintaining a balanced lifestyle.
-
-## Healthy Lifestyle ke Saath
-
-Better everyday wellness ke liye churan ke saath basic healthy habits bhi important hain:
+Daily wellbeing ke liye kuch simple habits helpful hain:
 
 - Balanced aur nutritious diet
-- Proper sleep aur rest
 - Regular physical activity
 - Adequate hydration
-- Stress ko manage karna
-- Healthy daily routine maintain karna
+- Proper sleep aur rest
+- Stress management
+- Consistent daily routine
+
+Herbal products ko healthy lifestyle ka replacement nahi, balki complementary wellness option ke roop mein dekhna chahiye.
 
 ## Amrit Urja Churan – Product Information
 
 - Product Name: Amrit Urja Churan
-- Type: Ayurvedic Herbal Churan
-- Pack Size: 100 g
+- Type: Ayurvedic Herbal Preparation
+- Pack Size: 100 GM
 
-Product ki complete dosage, ingredients aur usage instructions ke liye packaging par di gayi information ko follow karein. Recommended quantity se zyada use na karein.
+Product ki exact ingredients, recommended quantity aur usage instructions ke liye product packaging par di gayi information ko follow karein.
 
-## Important Note
+## Important Precautions
 
-Amrit Urja Churan ko healthy lifestyle ke complement ke roop mein use karein. Ye kisi disease ka treatment ya cure nahi hai. Agar aap medication le rahe hain, pregnant ya breastfeeding hain, ya kisi medical condition se concerned hain, to use karne se pehle qualified healthcare professional se salah lein.
+Recommended quantity se zyada use na karein. Agar aap pregnant ya breastfeeding hain, kisi medical condition se affected hain, ya regular medicines le rahe hain, to use karne se pehle qualified healthcare professional se salah lein.
 
 ## Conclusion
 
-Amrit Urja Churan traditional Ayurvedic herbal wellness ko daily lifestyle ke saath combine karne ka convenient option hai. Balanced diet, proper rest, exercise aur healthy routine ke saath ise apni everyday wellness journey ka part banaya ja sakta hai.`,
+Amrit Urja Churan traditional Ayurvedic and herbal wellness ko daily lifestyle ke saath include karne ka ek option hai. Healthy diet, proper rest, exercise aur balanced routine ke saath ise apni everyday wellness journey ka part banaya ja sakta hai.
+
+Traditional Ayurveda + herbal wellness + healthy lifestyle — ek balanced daily routine ki taraf simple approach.`,
     image: '/images/churan1.jpg',
   },
 ]
