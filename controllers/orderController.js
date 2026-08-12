@@ -82,19 +82,32 @@ const getOrders = async (req, res) => {
 const trackOrder = async (req, res) => {
   try {
     const { id, phone } = req.query
-    if (!id || !phone) {
-      return res.status(400).json({ message: 'Order ID and phone number are required' })
+    if (!phone) {
+      return res.status(400).json({ message: 'Phone number is required' })
     }
-    if (!mongoose.isValidObjectId(id)) {
-      return res.status(404).json({ message: 'Order not found. Please check the order ID.' })
+
+    if (id) {
+      if (!mongoose.isValidObjectId(id)) {
+        return res.status(404).json({ message: 'Order not found. Please check the order ID.' })
+      }
+      const order = await Order.findById(id)
+      if (!order || order.customer?.phone !== phone.trim()) {
+        return res
+          .status(404)
+          .json({ message: 'Order not found. Please check the order ID and phone number.' })
+      }
+      return res.status(200).json(order)
     }
-    const order = await Order.findById(id)
-    if (!order || order.customer?.phone !== phone.trim()) {
+
+    const orders = await Order.find({ 'customer.phone': phone.trim() })
+      .sort({ createdAt: -1 })
+      .limit(5)
+    if (orders.length === 0) {
       return res
         .status(404)
-        .json({ message: 'Order not found. Please check the order ID and phone number.' })
+        .json({ message: 'No orders found for this phone number. Please check and try again.' })
     }
-    res.status(200).json(order)
+    res.status(200).json(orders)
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
