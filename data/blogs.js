@@ -202,6 +202,65 @@ Discover the traditional Ayurvedic approach to Shilajit and make herbal wellness
     body: "The Falcon Combo Pack brings together our best-selling wellness essentials into a single, value-for-money kit. Instead of ordering each product separately, you get a complete wellness bundle at a better price — all in one order, delivered discreetly.\n\nWhy choose the combo: It simplifies your routine. The pack is designed so that the products work together to support stamina, energy and overall wellbeing. Whether you are starting your wellness journey or stocking up, the combo is the smart way to buy.\n\nWho is it for: Anyone who wants a complete daily wellness setup without the hassle of multiple orders. It also makes a thoughtful, practical gift.\n\nValue: Bundling the best-sellers together means you pay less than buying each item separately — all while building a complete wellness shelf at home.",
     image: '/images/product3.jpg',
   },
+  {
+    title: 'Amrit Urja Churan: Traditional Ayurvedic Wellness for Daily Balance',
+    slug: 'amrit-urja-churan',
+    category: 'Ayurveda & Herbal Wellness',
+    date: 'Jul 5, 2026',
+    readTime: '4 min read',
+    desc: 'Amrit Urja Churan ek classic ayurvedic churan hai jo traditional herbs ke saath digestion aur daily wellness ko support karta hai.',
+    body: `## Introduction
+
+Ayurveda mein churan ek traditional herbal preparation hai, jise naturally occurring herbs ko blend karke banaya jata hai. Traditional wellness practices mein churan ko daily routine ka part banane ka practice raha hai.
+
+Amrit Urja Churan ek classic ayurvedic churan hai, jo time-tested natural herbs ke saath traditional wellness approach ko modern lifestyle ke saath combine karne ke liye banaya gaya hai.
+
+## What Is Ayurvedic Churan?
+
+Churan Ayurveda mein herbs ko powder form mein blend kar ke banaya jata hai. Traditional formulations mein alag-alag natural herbs ko specific proportions mein combine kiya jata hai.
+
+Amrit Urja Churan traditional herbs ke balanced blend ke saath taiyar kiya gaya hai. Iska use healthy lifestyle routine ke part ke roop mein kiya ja sakta hai.
+
+## Ayurvedic & Herbal Wellness
+
+Ayurveda mein wellness ko sirf kisi ek product tak limited nahi maana jata. Balanced diet, proper sleep, regular activity aur healthy daily routine bhi Ayurvedic wellness ke important parts hain.
+
+Amrit Urja Churan ko isi broader Ayurvedic and herbal wellness routine ke part ke roop mein include kiya ja sakta hai.
+
+## Digestion & Daily Wellness
+
+Traditional Ayurvedic practices mein digestion ko overall wellbeing ka important hissa maana gaya hai. Balanced digestion healthy lifestyle aur daily energy ko support kar sakti hai.
+
+Amrit Urja Churan adults ke liye daily herbal wellness routine mein include kiya ja sakta hai, while maintaining a balanced lifestyle.
+
+## Healthy Lifestyle ke Saath
+
+Better everyday wellness ke liye churan ke saath basic healthy habits bhi important hain:
+
+- Balanced aur nutritious diet
+- Proper sleep aur rest
+- Regular physical activity
+- Adequate hydration
+- Stress ko manage karna
+- Healthy daily routine maintain karna
+
+## Amrit Urja Churan – Product Information
+
+- Product Name: Amrit Urja Churan
+- Type: Ayurvedic Herbal Churan
+- Pack Size: 100 g
+
+Product ki complete dosage, ingredients aur usage instructions ke liye packaging par di gayi information ko follow karein. Recommended quantity se zyada use na karein.
+
+## Important Note
+
+Amrit Urja Churan ko healthy lifestyle ke complement ke roop mein use karein. Ye kisi disease ka treatment ya cure nahi hai. Agar aap medication le rahe hain, pregnant ya breastfeeding hain, ya kisi medical condition se concerned hain, to use karne se pehle qualified healthcare professional se salah lein.
+
+## Conclusion
+
+Amrit Urja Churan traditional Ayurvedic herbal wellness ko daily lifestyle ke saath combine karne ka convenient option hai. Balanced diet, proper rest, exercise aur healthy routine ke saath ise apni everyday wellness journey ka part banaya ja sakta hai.`,
+    image: '/images/churan1.jpg',
+  },
 ]
 
 module.exports = blogs
