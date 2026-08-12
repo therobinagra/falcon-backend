@@ -200,7 +200,7 @@ Discover the traditional Ayurvedic approach to Shilajit and make herbal wellness
     readTime: '5 min read',
     desc: 'Our best-selling wellness essentials bundled into one value-for-money kit — everything you need, all in one order.',
     body: "The Falcon Combo Pack brings together our best-selling wellness essentials into a single, value-for-money kit. Instead of ordering each product separately, you get a complete wellness bundle at a better price — all in one order, delivered discreetly.\n\nWhy choose the combo: It simplifies your routine. The pack is designed so that the products work together to support stamina, energy and overall wellbeing. Whether you are starting your wellness journey or stocking up, the combo is the smart way to buy.\n\nWho is it for: Anyone who wants a complete daily wellness setup without the hassle of multiple orders. It also makes a thoughtful, practical gift.\n\nValue: Bundling the best-sellers together means you pay less than buying each item separately — all while building a complete wellness shelf at home.",
-    image: '/images/product3.jpg',
+    image: '/images/combo1.jpg',
   },
   {
     title: 'Amrit Urja Churan: Traditional Ayurvedic Wellness for Daily Balance',

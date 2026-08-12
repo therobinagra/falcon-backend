@@ -68,7 +68,7 @@ const products = [
     rating: 4.6,
     reviews: 320,
     gradient: 'from-amber-700 via-orange-600 to-rose-500',
-    image: '/images/product3.jpg',
+    image: '/images/combo1.jpg',
     badge: 'Combo Deal',
     stock: 15,
     featured: true,

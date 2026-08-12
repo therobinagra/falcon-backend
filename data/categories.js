@@ -12,7 +12,7 @@ const categories = [
   {
     name: 'Extend Range',
     description: 'Complete combo packs and performance essentials.',
-    image: '/images/product3.jpg',
+    image: '/images/combo1.jpg',
   },
   {
     name: 'Churan',
