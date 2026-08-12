@@ -17,6 +17,16 @@ connectDB().then(() => {
       { upsert: true, setDefaultsOnInsert: true }
     ).catch((err) => console.error('Product sync failed:', err.message))
   })
+
+  const Blog = require('./models/Blog')
+  const seedBlogs = require('./data/blogs')
+  seedBlogs.forEach((b) => {
+    Blog.findOneAndUpdate(
+      { slug: b.slug },
+      { $set: b },
+      { upsert: true, setDefaultsOnInsert: true }
+    ).catch((err) => console.error('Blog sync failed:', err.message))
+  })
 })
 
 app.use(cors())

@@ -1,12 +1,55 @@
 const blogs = [
   {
-    title: 'Amrit Urja Capsule: Your Daily Herbal Stamina & Energy Support',
+    title: 'Amrit Urja Capsule: Ayurvedic Herbal Support for Daily Stamina & Energy',
     slug: 'amrit-urja-capsule',
-    category: 'Bold Supplements',
+    category: 'Ayurveda & Herbal Wellness',
     date: 'Aug 2, 2026',
-    readTime: '5 min read',
-    desc: 'Everything you need to know about the Amrit Urja Capsule — the herbal powerhouse that supports stamina and energy every day.',
-    body: "Amrit Urja Capsule is crafted as a natural wellness powerhouse. It blends traditional herbal ingredients selected to support stamina, energy and overall vitality. Unlike quick fixes, it is designed for daily wellness — taken consistently, it helps you feel more energetic through the day.\n\nHow to use: Take 1 capsule daily after a meal, ideally at the same time each day. Drink a glass of water with it and keep yourself hydrated.\n\nWhat to expect: Many users notice steadier energy, better endurance during workouts and improved overall performance within a few weeks of consistent use. It works best when paired with good sleep, balanced meals and regular movement.\n\nWho is it for: Men looking for a natural, herbal route to daily stamina and vitality — no artificial shortcuts, just clean wellness support from nature.",
+    readTime: '3 min read',
+    desc: 'Amrit Urja Capsule ek Ayurvedic herbal supplement hai jo daily stamina aur energy ko support karta hai.',
+    body: `## Introduction
+
+Aaj ki busy lifestyle mein daily energy, stamina aur overall wellbeing ko maintain karna zaroori hai. Busy schedule, irregular routine aur proper rest ki kami ki wajah se hum aksar tired feel kar sakte hain.
+
+Amrit Urja Capsule ek Ayurvedic herbal supplement hai, jo traditional Ayurvedic wellness approach ko daily lifestyle ke saath include karne ke liye banaya gaya hai.
+
+## Ayurvedic & Herbal Wellness
+
+Ayurveda mein herbs aur natural ingredients ko traditional wellness practices ka important part maana gaya hai. Ayurvedic approach sirf ek product par depend nahi karti, balki balanced diet, proper sleep, regular activity aur healthy daily routine ko bhi importance deti hai.
+
+Amrit Urja Capsule ko isi broader Ayurvedic and herbal wellness routine ka ek part banaya ja sakta hai.
+
+## Daily Stamina & Vitality
+
+Active lifestyle ke liye consistent energy aur stamina important hote hain. Work, exercise aur daily responsibilities ke beech ek healthy routine maintain karna overall wellbeing ke liye helpful ho sakta hai.
+
+Amrit Urja Capsule adults ke liye daily herbal wellness routine mein include kiya ja sakta hai, while maintaining a balanced lifestyle.
+
+## Healthy Lifestyle ke Saath
+
+Better everyday wellness ke liye supplement ke saath basic healthy habits bhi important hain:
+
+- Balanced aur nutritious diet
+- Proper sleep aur rest
+- Regular physical activity
+- Adequate hydration
+- Stress ko manage karna
+- Healthy daily routine maintain karna
+
+## Amrit Urja Capsule
+
+- Product: Amrit Urja Capsule
+- Type: Ayurvedic Herbal Supplement
+- Pack Size: 60 Capsules
+
+Product ki complete dosage, ingredients aur usage instructions ke liye packaging par di gayi information ko follow karein.
+
+## Important Note
+
+Amrit Urja Capsule ko healthy lifestyle ke complement ke roop mein use karein. Ye kisi disease ka treatment ya cure nahi hai. Agar aap medication le rahe hain, pregnant ya breastfeeding hain, ya kisi medical condition se concerned hain, to use karne se pehle qualified healthcare professional se salah lein.
+
+## Conclusion
+
+Amrit Urja Capsule traditional Ayurvedic and herbal wellness ko modern daily lifestyle ke saath combine karne ka convenient option hai. Balanced diet, proper rest, exercise aur healthy routine ke saath ise apni everyday wellness journey ka part banaya ja sakta hai.`,
     image: '/images/product5.jpg',
   },
   {
