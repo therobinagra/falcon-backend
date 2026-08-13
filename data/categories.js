@@ -1,8 +1,13 @@
 const categories = [
   {
-    name: 'Bold Supplements',
-    description: 'Herbal capsules, oils and daily wellness supplements.',
+    name: 'Capsule',
+    description: 'Herbal capsules for daily stamina and wellness.',
     image: '/images/product5.jpg',
+  },
+  {
+    name: 'Oil',
+    description: 'Herbal massage oils for strength and vitality.',
+    image: '/images/product11.jpg',
   },
   {
     name: 'Shilajit',

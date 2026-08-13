@@ -5,7 +5,7 @@ const products = [
     tagline: 'Natural stamina & energy booster',
     description:
       'Amrit Urja capsules are a herbal powerhouse crafted to boost stamina, energy and overall vitality. Made from natural herbs, ideal for daily wellness.',
-    category: 'Bold Supplements',
+    category: 'Capsule',
     price: 1499,
     mrp: 1999,
     rating: 4.8,
@@ -24,7 +24,7 @@ const products = [
     tagline: 'Herbal massage oil for strength',
     description:
       'Amrit Urja herbal oil for external use — a traditional blend that supports muscle strength, relaxation and everyday vitality when massaged gently.',
-    category: 'Bold Supplements',
+    category: 'Oil',
     price: 449,
     mrp: 699,
     rating: 4.5,
