@@ -49,6 +49,7 @@ app.use('/api/products', require('./routes/productRoutes'))
 app.use('/api/orders', require('./routes/orderRoutes'))
 app.use('/api/categories', require('./routes/categoryRoutes'))
 app.use('/api/blogs', require('./routes/blogRoutes'))
+app.use('/api/leads', require('./routes/leadRoutes'))
 app.use('/api/admin', require('./routes/adminRoutes'))
 
 app.use(notFound)
