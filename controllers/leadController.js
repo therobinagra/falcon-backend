@@ -9,6 +9,8 @@ const createLead = async (req, res) => {
     }
     const lead = await Lead.create({ name, email, phone, subject, message })
 
+    res.status(201).json({ message: 'Lead submitted successfully', lead })
+
     try {
       const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST || 'smtp.gmail.com',
@@ -18,6 +20,9 @@ const createLead = async (req, res) => {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
         },
+        connectionTimeout: 5000,
+        greetingTimeout: 5000,
+        socketTimeout: 5000,
       })
 
       await transporter.sendMail({
@@ -39,8 +44,6 @@ const createLead = async (req, res) => {
     } catch (emailErr) {
       console.error('Email send failed:', emailErr.message)
     }
-
-    res.status(201).json({ message: 'Lead submitted successfully', lead })
   } catch (err) {
     res.status(500).json({ message: 'Failed to submit lead', error: err.message })
   }
