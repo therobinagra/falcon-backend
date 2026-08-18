@@ -12,21 +12,29 @@ const createLead = async (req, res) => {
     res.status(201).json({ message: 'Lead submitted successfully', lead })
 
     try {
+      const smtpUser = process.env.SMTP_USER || 'falconayurveda1@gmail.com'
+      const smtpPass = process.env.SMTP_PASS
+
+      if (!smtpPass || smtpPass === 'your_gmail_app_password_here') {
+        console.error('EMAIL SKIPPED: SMTP_PASS not configured in environment')
+        return
+      }
+
       const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST || 'smtp.gmail.com',
         port: Number(process.env.SMTP_PORT) || 587,
         secure: false,
         auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
+          user: smtpUser,
+          pass: smtpPass.replace(/\s/g, ''),
         },
-        connectionTimeout: 5000,
-        greetingTimeout: 5000,
-        socketTimeout: 5000,
+        connectionTimeout: 10000,
+        greetingTimeout: 10000,
+        socketTimeout: 10000,
       })
 
       await transporter.sendMail({
-        from: process.env.SMTP_USER || 'falconayurveda1@gmail.com',
+        from: smtpUser,
         to: 'falconayurveda1@gmail.com',
         subject: `New Lead: ${subject || name}`,
         html: `
@@ -41,8 +49,9 @@ const createLead = async (req, res) => {
           <p><small>Sent from FalconCare Contact Form</small></p>
         `,
       })
+      console.log('Lead email sent successfully to', 'falconayurveda1@gmail.com')
     } catch (emailErr) {
-      console.error('Email send failed:', emailErr.message)
+      console.error('EMAIL FAILED:', emailErr.message)
     }
   } catch (err) {
     res.status(500).json({ message: 'Failed to submit lead', error: err.message })
