@@ -11,16 +11,17 @@ const createLead = async (req, res) => {
     res.status(201).json({ message: 'Lead submitted successfully', lead })
 
     try {
-      const webhookUrl = process.env.FORMSUBMIT_URL
-      if (!webhookUrl) {
-        console.error('EMAIL SKIPPED: FORMSUBMIT_URL not configured')
+      const accessKey = process.env.WEB3FORMS_KEY
+      if (!accessKey) {
+        console.error('EMAIL SKIPPED: WEB3FORMS_KEY not configured')
         return
       }
 
-      await fetch(webhookUrl, {
+      const res2 = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          access_key: accessKey,
           name,
           email,
           phone: phone || 'Not provided',
@@ -28,7 +29,12 @@ const createLead = async (req, res) => {
           message,
         }),
       })
-      console.log('Lead email forwarded to falconayurveda1@gmail.com')
+      const data = await res2.json()
+      if (data.success) {
+        console.log('Lead email sent successfully to falconayurveda1@gmail.com')
+      } else {
+        console.error('EMAIL FAILED:', data.message || 'Web3Forms rejected')
+      }
     } catch (emailErr) {
       console.error('EMAIL FAILED:', emailErr.message)
     }
