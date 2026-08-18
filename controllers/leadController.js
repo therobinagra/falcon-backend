@@ -1,14 +1,5 @@
 const Lead = require('../models/Lead')
 
-let resendClient = null
-function getResend() {
-  if (!resendClient && process.env.RESEND_API_KEY) {
-    const { Resend } = require('resend')
-    resendClient = new Resend(process.env.RESEND_API_KEY)
-  }
-  return resendClient
-}
-
 const createLead = async (req, res) => {
   try {
     const { name, email, phone, subject, message } = req.body
@@ -20,29 +11,24 @@ const createLead = async (req, res) => {
     res.status(201).json({ message: 'Lead submitted successfully', lead })
 
     try {
-      const resend = getResend()
-      if (!resend) {
-        console.error('EMAIL SKIPPED: RESEND_API_KEY not configured')
+      const webhookUrl = process.env.FORMSUBMIT_URL
+      if (!webhookUrl) {
+        console.error('EMAIL SKIPPED: FORMSUBMIT_URL not configured')
         return
       }
 
-      await resend.emails.send({
-        from: 'FalconCare <onboarding@resend.dev>',
-        to: 'falconayurveda1@gmail.com',
-        subject: `New Lead: ${subject || name}`,
-        html: `
-          <h2>New Contact Form Lead</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-          <p><strong>Subject:</strong> ${subject || 'N/A'}</p>
-          <p><strong>Message:</strong></p>
-          <p>${message}</p>
-          <hr/>
-          <p><small>Sent from FalconCare Contact Form</small></p>
-        `,
+      await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: phone || 'Not provided',
+          subject: subject || 'Contact Form Lead',
+          message,
+        }),
       })
-      console.log('Lead email sent successfully to', 'falconayurveda1@gmail.com')
+      console.log('Lead email forwarded to falconayurveda1@gmail.com')
     } catch (emailErr) {
       console.error('EMAIL FAILED:', emailErr.message)
     }
