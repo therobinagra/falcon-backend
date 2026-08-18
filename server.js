@@ -44,19 +44,6 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'ok', message: 'Backend is running' })
 })
 
-app.get('/api/smtp-check', (req, res) => {
-  const hasUser = !!process.env.SMTP_USER
-  const hasPass = !!process.env.SMTP_PASS && process.env.SMTP_PASS !== 'your_gmail_app_password_here'
-  const hasHost = !!process.env.SMTP_HOST
-  res.json({
-    SMTP_USER_SET: hasUser,
-    SMTP_PASS_SET: hasPass,
-    SMTP_HOST_SET: hasHost,
-    SMTP_USER_LENGTH: process.env.SMTP_USER ? process.env.SMTP_USER.length : 0,
-    SMTP_PASS_LENGTH: process.env.SMTP_PASS ? process.env.SMTP_PASS.length : 0,
-  })
-})
-
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/products', require('./routes/productRoutes'))
 app.use('/api/orders', require('./routes/orderRoutes'))

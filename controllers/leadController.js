@@ -1,5 +1,13 @@
 const Lead = require('../models/Lead')
-const nodemailer = require('nodemailer')
+
+let resendClient = null
+function getResend() {
+  if (!resendClient && process.env.RESEND_API_KEY) {
+    const { Resend } = require('resend')
+    resendClient = new Resend(process.env.RESEND_API_KEY)
+  }
+  return resendClient
+}
 
 const createLead = async (req, res) => {
   try {
@@ -12,29 +20,16 @@ const createLead = async (req, res) => {
     res.status(201).json({ message: 'Lead submitted successfully', lead })
 
     try {
-      const smtpUser = process.env.SMTP_USER || 'falconayurveda1@gmail.com'
-      const smtpPass = process.env.SMTP_PASS
-
-      if (!smtpPass || smtpPass === 'your_gmail_app_password_here') {
-        console.error('EMAIL SKIPPED: SMTP_PASS not configured in environment')
+      const resend = getResend()
+      if (!resend) {
+        console.error('EMAIL SKIPPED: RESEND_API_KEY not configured')
         return
       }
 
-      const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST || 'smtp.gmail.com',
-        port: Number(process.env.SMTP_PORT) || 587,
-        secure: false,
-        auth: {
-          user: smtpUser,
-          pass: smtpPass.replace(/\s/g, ''),
-        },
-        connectionTimeout: 10000,
-        greetingTimeout: 10000,
-        socketTimeout: 10000,
-      })
+      const fromEmail = process.env.EMAIL_FROM || 'falconayurveda1@gmail.com'
 
-      await transporter.sendMail({
-        from: smtpUser,
+      await resend.emails.send({
+        from: `FalconCare <${fromEmail}>`,
         to: 'falconayurveda1@gmail.com',
         subject: `New Lead: ${subject || name}`,
         html: `
