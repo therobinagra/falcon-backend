@@ -9,35 +9,6 @@ const createLead = async (req, res) => {
     const lead = await Lead.create({ name, email, phone, subject, message })
 
     res.status(201).json({ message: 'Lead submitted successfully', lead })
-
-    try {
-      const accessKey = process.env.WEB3FORMS_KEY
-      if (!accessKey) {
-        console.error('EMAIL SKIPPED: WEB3FORMS_KEY not configured')
-        return
-      }
-
-      const res2 = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: accessKey,
-          name,
-          email,
-          phone: phone || 'Not provided',
-          subject: subject || 'Contact Form Lead',
-          message,
-        }),
-      })
-      const data = await res2.json()
-      if (data.success) {
-        console.log('Lead email sent successfully to falconayurveda1@gmail.com')
-      } else {
-        console.error('EMAIL FAILED:', data.message || 'Web3Forms rejected')
-      }
-    } catch (emailErr) {
-      console.error('EMAIL FAILED:', emailErr.message)
-    }
   } catch (err) {
     res.status(500).json({ message: 'Failed to submit lead', error: err.message })
   }
