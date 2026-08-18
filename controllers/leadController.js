@@ -26,10 +26,8 @@ const createLead = async (req, res) => {
         return
       }
 
-      const fromEmail = process.env.EMAIL_FROM || 'falconayurveda1@gmail.com'
-
       await resend.emails.send({
-        from: `FalconCare <${fromEmail}>`,
+        from: 'FalconCare <onboarding@resend.dev>',
         to: 'falconayurveda1@gmail.com',
         subject: `New Lead: ${subject || name}`,
         html: `
