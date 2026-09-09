@@ -1,9 +1,20 @@
 const Category = require('../models/Category')
+const { ensureNumericSku, getNextNumericSku } = require('../utils/numericId')
 
 const getCategories = async (req, res) => {
   try {
     const categories = await Category.find().sort({ name: 1 })
-    res.status(200).json(categories)
+    const withIds = await Promise.all(
+      categories.map(async (c) => {
+        const sku = await ensureNumericSku(Category, c)
+        return {
+          ...c.toObject(),
+          id: sku,
+          sku,
+        }
+      })
+    )
+    res.status(200).json(withIds)
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
@@ -26,6 +37,7 @@ const createCategory = async (req, res) => {
       name: name.trim(),
       description: description || '',
       image: image || '',
+      sku: await getNextNumericSku(Category),
     })
 
     res.status(201).json(category)

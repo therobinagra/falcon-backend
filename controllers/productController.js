@@ -1,4 +1,5 @@
 const Product = require('../models/Product')
+const { ensureNumericSku, getNextNumericSku } = require('../utils/numericId')
 
 const getProducts = async (req, res) => {
   try {
@@ -18,7 +19,17 @@ const getProducts = async (req, res) => {
     let query = Product.find(filter).sort({ createdAt: 1 })
     if (limit) query = query.limit(Number(limit))
 
-    const products = await query
+    let products = await query
+    products = await Promise.all(
+      products.map(async (p) => {
+        const sku = await ensureNumericSku(Product, p)
+        return {
+          ...p.toObject(),
+          id: sku,
+          sku,
+        }
+      })
+    )
     res.status(200).json(products)
   } catch (error) {
     res.status(500).json({ message: error.message })
@@ -89,6 +100,7 @@ const createProduct = async (req, res) => {
       featured: featured === 'true' || featured === true,
       inStock: inStock === 'true' || inStock === true || inStock === undefined,
       related: Array.isArray(related) ? related : [],
+      sku: await getNextNumericSku(Product),
     })
 
     res.status(201).json(product)

@@ -74,6 +74,11 @@ const productSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
+    sku: {
+      type: Number,
+      sparse: true,
+      unique: true,
+    },
   },
   { timestamps: true }
 )

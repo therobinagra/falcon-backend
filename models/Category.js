@@ -20,6 +20,11 @@ const categorySchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    sku: {
+      type: Number,
+      sparse: true,
+      unique: true,
+    },
   },
   { timestamps: true }
 )
