@@ -4,22 +4,21 @@ const { ensureNumericSku } = require('../utils/numericId')
 
 const getNumericProducts = async (req, res) => {
   try {
-    let products = await Product.find({}).lean()
-    products = await Promise.all(
-      products.map(async (p) => {
-        const sku = await ensureNumericSku(Product, p)
-        return {
-          id: sku,
-          sku,
-          name: p.name,
-          price: p.price,
-          mrp: p.mrp,
-          stock: p.stock,
-          category: p.category,
-        }
+    const products = await Product.find({}).lean()
+    const out = []
+    for (const p of products) {
+      const sku = await ensureNumericSku(Product, p)
+      out.push({
+        id: sku,
+        sku,
+        name: p.name,
+        price: p.price,
+        mrp: p.mrp,
+        stock: p.stock,
+        category: p.category,
       })
-    )
-    res.status(200).json(products)
+    }
+    res.status(200).json(out)
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
@@ -27,18 +26,17 @@ const getNumericProducts = async (req, res) => {
 
 const getNumericCollections = async (req, res) => {
   try {
-    let collections = await Category.find({ isActive: true }).lean()
-    collections = await Promise.all(
-      collections.map(async (c) => {
-        const sku = await ensureNumericSku(Category, c)
-        return {
-          id: sku,
-          sku,
-          name: c.name,
-        }
+    const collections = await Category.find({ isActive: true }).lean()
+    const out = []
+    for (const c of collections) {
+      const sku = await ensureNumericSku(Category, c)
+      out.push({
+        id: sku,
+        sku,
+        name: c.name,
       })
-    )
-    res.status(200).json(collections)
+    }
+    res.status(200).json(out)
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

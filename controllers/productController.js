@@ -20,17 +20,16 @@ const getProducts = async (req, res) => {
     if (limit) query = query.limit(Number(limit))
 
     let products = await query
-    products = await Promise.all(
-      products.map(async (p) => {
-        const sku = await ensureNumericSku(Product, p)
-        return {
-          ...p.toObject(),
-          id: sku,
-          sku,
-        }
+    const withIds = []
+    for (const p of products) {
+      const sku = await ensureNumericSku(Product, p)
+      withIds.push({
+        ...p.toObject(),
+        id: sku,
+        sku,
       })
-    )
-    res.status(200).json(products)
+    }
+    res.status(200).json(withIds)
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
