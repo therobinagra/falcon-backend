@@ -1,9 +1,16 @@
 const Product = require('../models/Product')
+const Category = require('../models/Category')
 const { ensureNumericSku, getNextNumericSku } = require('../utils/numericId')
+const {
+  hydrateProductSkus,
+  toSrcProduct,
+  isSrcCall,
+  pagination,
+} = require('../utils/catalog')
 
 const getProducts = async (req, res) => {
   try {
-    const { category, search, featured, limit } = req.query
+    const { category, search, featured } = req.query
     const filter = {}
 
     if (category && category !== 'All Products') filter.category = category
@@ -16,8 +23,34 @@ const getProducts = async (req, res) => {
       ]
     }
 
+    if (isSrcCall(req.query)) {
+      if (req.query.collection_id) {
+        const collection = await Category.findOne({
+          sku: Number(req.query.collection_id),
+        }).lean()
+        if (collection) filter.category = collection.name
+      }
+
+      const { page, limit } = pagination(req.query, 100)
+      const total = await Product.countDocuments(filter)
+      const products = await hydrateProductSkus(
+        await Product.find(filter)
+          .sort({ createdAt: 1 })
+          .skip((page - 1) * limit)
+          .limit(limit)
+          .lean()
+      )
+
+      return res.status(200).json({
+        data: {
+          total,
+          products: products.map((p) => toSrcProduct(p, req)),
+        },
+      })
+    }
+
     let query = Product.find(filter).sort({ createdAt: 1 })
-    if (limit) query = query.limit(Number(limit))
+    if (req.query.limit) query = query.limit(Number(req.query.limit))
 
     let products = await query
     const withIds = []

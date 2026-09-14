@@ -1,8 +1,39 @@
 const Category = require('../models/Category')
 const { ensureNumericSku, getNextNumericSku } = require('../utils/numericId')
+const {
+  hydrateCategorySkus,
+  toSrcCollection,
+  isSrcCall,
+  pagination,
+  categoryImageMap,
+} = require('../utils/catalog')
 
 const getCategories = async (req, res) => {
   try {
+    if (isSrcCall(req.query)) {
+      const { page, limit } = pagination(req.query, 100)
+      const filter = { isActive: true }
+      const total = await Category.countDocuments(filter)
+      const collections = await hydrateCategorySkus(
+        await Category.find(filter)
+          .sort({ name: 1 })
+          .skip((page - 1) * limit)
+          .limit(limit)
+          .lean()
+      )
+
+      const imageByCategory = await categoryImageMap()
+
+      return res.status(200).json({
+        data: {
+          total,
+          collections: collections.map((c) =>
+            toSrcCollection(c, req, imageByCategory.get(c.name))
+          ),
+        },
+      })
+    }
+
     const categories = await Category.find().sort({ name: 1 })
     const withIds = []
     for (const c of categories) {

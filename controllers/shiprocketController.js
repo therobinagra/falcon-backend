@@ -1,24 +1,42 @@
 const Product = require('../models/Product')
 const Category = require('../models/Category')
-const { ensureNumericSku } = require('../utils/numericId')
+const {
+  hydrateProductSkus,
+  hydrateCategorySkus,
+  toSrcProduct,
+  toSrcCollection,
+  pagination,
+  categoryImageMap,
+} = require('../utils/catalog')
 
 const getNumericProducts = async (req, res) => {
   try {
-    const products = await Product.find({}).lean()
-    const out = []
-    for (const p of products) {
-      const sku = await ensureNumericSku(Product, p)
-      out.push({
-        id: sku,
-        sku,
-        name: p.name,
-        price: p.price,
-        mrp: p.mrp,
-        stock: p.stock,
-        category: p.category,
-      })
+    const filter = {}
+    if (req.query.collection_id) {
+      const collection = await Category.findOne({
+        sku: Number(req.query.collection_id),
+      }).lean()
+      if (collection) filter.category = collection.name
+    } else if (req.query.category && req.query.category !== 'All Products') {
+      filter.category = req.query.category
     }
-    res.status(200).json(out)
+
+    const { page, limit } = pagination(req.query, 100)
+    const total = await Product.countDocuments(filter)
+    const products = await hydrateProductSkus(
+      await Product.find(filter)
+        .sort({ createdAt: 1 })
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .lean()
+    )
+
+    res.status(200).json({
+      data: {
+        total,
+        products: products.map((p) => toSrcProduct(p, req)),
+      },
+    })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
@@ -26,17 +44,27 @@ const getNumericProducts = async (req, res) => {
 
 const getNumericCollections = async (req, res) => {
   try {
-    const collections = await Category.find({ isActive: true }).lean()
-    const out = []
-    for (const c of collections) {
-      const sku = await ensureNumericSku(Category, c)
-      out.push({
-        id: sku,
-        sku,
-        name: c.name,
-      })
-    }
-    res.status(200).json(out)
+    const { page, limit } = pagination(req.query, 100)
+    const filter = { isActive: true }
+    const total = await Category.countDocuments(filter)
+    const collections = await hydrateCategorySkus(
+      await Category.find(filter)
+        .sort({ name: 1 })
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .lean()
+    )
+
+    const imageByCategory = await categoryImageMap()
+
+    res.status(200).json({
+      data: {
+        total,
+        collections: collections.map((c) =>
+          toSrcCollection(c, req, imageByCategory.get(c.name))
+        ),
+      },
+    })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
