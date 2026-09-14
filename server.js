@@ -7,6 +7,8 @@ require('dotenv').config()
 
 const app = express()
 
+app.set('trust proxy', true)
+
 connectDB().then(async () => {
   const Product = require('./models/Product')
   const seedProducts = require('./data/products')
