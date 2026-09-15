@@ -94,19 +94,42 @@ const getCheckoutToken = async (req, res) => {
     }))
 
     const clientUrl = process.env.CLIENT_URL || 'https://www.falconayurveda.in'
-    const token = await checkout.getCheckoutToken({
+    const finalRedirectUrl = redirectUrl || `${clientUrl}/?order=${order._id.toString()}`
+
+    const tokenResponse = await checkout.getCheckoutToken({
       items,
-      redirectUrl: redirectUrl || `${clientUrl}/track-order`,
-      customAttributes: {
-        order_id: order._id.toString(),
-        email: order.customer.email,
-        phone: order.customer.phone,
-      },
+      redirectUrl: finalRedirectUrl,
     })
 
-    res.status(200).json(token)
+    const fastrrOrderId = tokenResponse?.result?.data?.order_id
+    if (fastrrOrderId) {
+      order.shiprocketOrderId = fastrrOrderId
+      order.paymentDetails = {
+        ...(order.paymentDetails || {}),
+        checkoutToken: tokenResponse?.result?.token,
+        fastrrOrderId,
+      }
+      await order.save()
+    }
+
+    res.status(200).json(tokenResponse)
   } catch (error) {
     console.error('SRC checkout token error:', error.message)
+    res.status(error.status || 500).json({ message: error.message })
+  }
+}
+
+const getOrderDetails = async (req, res) => {
+  try {
+    const { orderId } = req.body
+    if (!orderId) {
+      return res.status(400).json({ message: 'orderId is required' })
+    }
+
+    const details = await checkout.getOrderDetails({ orderId })
+    res.status(200).json(details)
+  } catch (error) {
+    console.error('SRC order details error:', error.message)
     res.status(error.status || 500).json({ message: error.message })
   }
 }
@@ -120,34 +143,45 @@ const orderWebhook = async (req, res) => {
       return res.status(401).json({ ok: false, result: 'Invalid signature' })
     }
 
-    const orderId =
-      payload?.order_id ||
-      payload?.orderId ||
-      payload?.cart_data?.customAttributes?.order_id ||
-      payload?.custom_attributes?.order_id ||
-      payload?.cid
+    const fastrrOrderId = payload?.order_id
+    const status = String(payload?.status || '').toUpperCase()
 
-    const status = String(payload?.status || payload?.event || '').toUpperCase()
+    let order = null
 
-    if (!orderId) {
-      return res.status(200).json({ ok: true, result: 'No order reference in payload' })
+    if (fastrrOrderId) {
+      order = await Order.findOne({ shiprocketOrderId: fastrrOrderId })
     }
 
-    const order = await Order.findById(orderId)
+    if (!order && payload?.redirect_url) {
+      try {
+        const url = new URL(payload.redirect_url)
+        const mongoId = url.searchParams.get('order')
+        if (mongoId) order = await Order.findById(mongoId)
+      } catch { /* ignore */ }
+    }
+
+    if (!order && payload?.cart_data?.customAttributes?.order_id) {
+      order = await Order.findById(payload.cart_data.customAttributes.order_id)
+    }
+
+    if (!order && payload?.cid) {
+      order = await Order.findById(payload.cid)
+    }
+
     if (!order) {
       return res.status(200).json({ ok: true, result: 'Order not found' })
     }
 
-    if (['SUCCESS', 'PAID', 'PAYMENT_SUCCESS', 'CREATED', 'CONFIRMED'].includes(status)) {
+    if (status === 'SUCCESS' || status === 'PAID' || status === 'PAYMENT_SUCCESS') {
       order.paymentStatus = 'Paid'
       order.status = 'Confirmed'
       order.paymentMethod = order.paymentMethod || 'Online'
-    } else if (['FAILED', 'FAILURE', 'CANCELLED', 'CANCELED', 'REFUNDED'].includes(status)) {
+    } else if (status === 'FAILED' || status === 'FAILURE' || status === 'CANCELLED' || status === 'CANCELED' || status === 'REFUNDED') {
       order.paymentStatus = 'Failed'
     }
 
-    order.shiprocketOrderId = payload?.shiprocket_order_id || payload?.order_no || order.shiprocketOrderId
-    order.paymentDetails = { ...(order.paymentDetails || {}), ...payload, raw: payload }
+    order.shiprocketOrderId = fastrrOrderId || order.shiprocketOrderId
+    order.paymentDetails = { ...(order.paymentDetails || {}), raw: payload }
     await order.save()
 
     res.status(200).json({ ok: true, result: true })
@@ -157,4 +191,4 @@ const orderWebhook = async (req, res) => {
   }
 }
 
-module.exports = { getNumericProducts, getNumericCollections, getCheckoutToken, orderWebhook }
+module.exports = { getNumericProducts, getNumericCollections, getCheckoutToken, getOrderDetails, orderWebhook }
