@@ -13,7 +13,7 @@ const BASE_URL =
   SHIPROCKET_CHECKOUT_BASE_URL ||
   (SHIPROCKET_CHECKOUT_ENV === 'sandbox'
     ? 'https://fastrr-api-dev.pickrr.com'
-    : 'https://fastrr-api-dev.pickrr.com')
+    : 'https://checkout-api.shiprocket.com')
 
 const TOKEN_PATH = SHIPROCKET_CHECKOUT_TOKEN_PATH || '/api/v1/access-token/checkout'
 const ORDER_DETAILS_PATH = SHIPROCKET_CHECKOUT_ORDER_DETAILS_PATH || '/api/v1/custom-platform-order/details'
