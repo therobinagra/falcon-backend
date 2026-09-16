@@ -40,7 +40,10 @@ const getCheckoutToken = async ({ items, redirectUrl }) => {
   }
 
   const payload = {
-    cart_data: { items },
+    cart_data: {
+      items,
+      mobile_app: false,
+    },
     redirect_url: redirectUrl,
     timestamp: new Date().toISOString(),
   }
