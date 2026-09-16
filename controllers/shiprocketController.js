@@ -88,10 +88,11 @@ const getCheckoutToken = async (req, res) => {
     const products = await hydrateProductSkus(await Product.find({ _id: { $in: productIds } }).lean())
     const skuByProduct = new Map(products.map((p) => [p._id.toString(), p.sku]))
 
-    const items = order.items.map((item) => ({
-      variant_id: skuByProduct.get(item.product.toString()) || item.product.toString(),
-      quantity: item.qty,
-    }))
+    const items = order.items.map((item) => {
+      const sku = skuByProduct.get(item.product.toString())
+      const variantId = sku && Number(sku) > 0 ? Number(sku) * 10 + 1 : sku || item.product.toString()
+      return { variant_id: variantId, quantity: item.qty }
+    })
 
     const clientUrl = process.env.CLIENT_URL || 'https://www.falconayurveda.in'
     const finalRedirectUrl = redirectUrl || `${clientUrl}/?order=${order._id.toString()}`
