@@ -54,6 +54,7 @@ app.use('/api/blogs', require('./routes/blogRoutes'))
 app.use('/api/leads', require('./routes/leadRoutes'))
 app.use('/api/admin', require('./routes/adminRoutes'))
 app.use('/api/shiprocket', require('./routes/shiprocketRoutes'))
+app.use('/api/hooks', require('./routes/hooksRoutes'))
 
 app.use(notFound)
 app.use(errorHandler)
