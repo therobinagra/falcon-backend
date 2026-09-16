@@ -138,8 +138,14 @@ const orderWebhook = async (req, res) => {
   try {
     const payload = req.body
 
+    const configuredKey = process.env.SHIPROCKET_WEBHOOK_API_KEY
+    const providedKey = req.get('x-api-key')
     const providedHmac = req.get('X-Api-HMAC-SHA256')
-    if (!checkout.verifySignature(JSON.stringify(payload), providedHmac)) {
+
+    const keyValid = configuredKey && providedKey && providedKey === configuredKey
+    const hmacValid = checkout.verifySignature(JSON.stringify(payload), providedHmac)
+
+    if (!keyValid && !hmacValid) {
       return res.status(401).json({ ok: false, result: 'Invalid signature' })
     }
 
