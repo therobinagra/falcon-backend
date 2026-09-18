@@ -77,6 +77,20 @@ const orderSchema = new mongoose.Schema(
       enum: ['Placed', 'Confirmed', 'Shipped', 'Delivered', 'Cancelled'],
       default: 'Placed',
     },
+    shiprocketOrderId: { type: String, default: '' },
+    shiprocketError: { type: String, default: '' },
+    awbNumber: { type: String, default: '' },
+    courierName: { type: String, default: '' },
+    estimatedDelivery: { type: String, default: '' },
+    trackingUrl: { type: String, default: '' },
+    trackingData: [
+      {
+        status: String,
+        timestamp: Date,
+        location: String,
+      },
+    ],
+    paymentDetails: { type: mongoose.Schema.Types.Mixed, default: {} },
   },
   { timestamps: true }
 )

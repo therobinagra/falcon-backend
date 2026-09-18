@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Order = require('../models/Order')
 const Product = require('../models/Product')
+const { restoreStock } = require('../utils/stock')
 
 const createOrder = async (req, res) => {
   try {
@@ -20,6 +21,14 @@ const createOrder = async (req, res) => {
       }
 
       const qty = Number(item.qty) || 1
+
+      if (product.inStock === false || (product.stock !== undefined && product.stock <= 0)) {
+        return res.status(400).json({ message: `${product.name} is out of stock.` })
+      }
+      if (product.stock !== undefined && product.stock < qty) {
+        return res.status(400).json({ message: `Only ${product.stock} left of ${product.name}. Please reduce the quantity.` })
+      }
+
       itemsPrice += product.price * qty
 
       enriched.push({
@@ -133,8 +142,20 @@ const updateOrderStatus = async (req, res) => {
     }
 
     const { status, paymentStatus } = req.body
+
+    const wasCancelled = status === 'Cancelled' && order.status !== 'Cancelled'
+    const wasPaid = order.paymentStatus === 'Paid'
+
     if (status) order.status = status
     if (paymentStatus) order.paymentStatus = paymentStatus
+
+    if (wasCancelled && wasPaid) {
+      try {
+        await restoreStock(order)
+      } catch (e) {
+        console.error('Failed to restore stock on order cancel:', e.message)
+      }
+    }
 
     const updated = await order.save()
     res.status(200).json(updated)

@@ -10,6 +10,7 @@ const {
   pagination,
   categoryImageMap,
 } = require('../utils/catalog')
+const { decreaseStock, restoreStock } = require('../utils/stock')
 
 const getNumericProducts = async (req, res) => {
   try {
@@ -179,12 +180,21 @@ const orderWebhook = async (req, res) => {
       return res.status(200).json({ ok: true, result: 'Order not found' })
     }
 
+    const wasPaid = order.paymentStatus === 'Paid'
+
     if (status === 'SUCCESS' || status === 'PAID' || status === 'PAYMENT_SUCCESS') {
       order.paymentStatus = 'Paid'
       order.status = 'Confirmed'
       order.paymentMethod = order.paymentMethod || 'Online'
     } else if (status === 'FAILED' || status === 'FAILURE' || status === 'CANCELLED' || status === 'CANCELED' || status === 'REFUNDED') {
       order.paymentStatus = 'Failed'
+      if (wasPaid) {
+        try {
+          await restoreStock(order)
+        } catch (e) {
+          console.error('Failed to restore stock on payment webhook cancel:', e.message)
+        }
+      }
     }
 
     order.shiprocketOrderId = fastrrOrderId || order.shiprocketOrderId
@@ -205,9 +215,18 @@ const confirmPaymentStatus = async (req, res) => {
       return res.status(404).json({ message: 'Order not found' })
     }
 
+    const wasPending = order.paymentStatus !== 'Paid'
     order.paymentStatus = 'Paid'
     order.status = 'Confirmed'
     await order.save()
+
+    if (wasPending) {
+      try {
+        await decreaseStock(order)
+      } catch (e) {
+        console.error('Failed to decrease stock on payment confirmation:', e.message)
+      }
+    }
 
     res.status(200).json(order)
   } catch (error) {
